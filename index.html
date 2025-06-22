@@ -17,31 +17,35 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             direction: rtl;
+            font-feature-settings: "lnum" 1;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
 
+        /* Header Styles */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px 20px;
             margin-bottom: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
+            min-width: 200px;
         }
 
         .logo-icon {
@@ -54,24 +58,26 @@
             justify-content: center;
             color: white;
             font-size: 24px;
+            flex-shrink: 0;
         }
 
         .logo-text h1 {
             color: #2d3748;
-            font-size: 24px;
+            font-size: clamp(18px, 4vw, 24px);
             font-weight: 700;
+            line-height: 1.2;
         }
 
         .logo-text p {
             color: #718096;
-            font-size: 14px;
+            font-size: clamp(12px, 3vw, 14px);
         }
 
         .search-container {
             position: relative;
             flex: 1;
             max-width: 400px;
-            margin: 0 20px;
+            min-width: 200px;
         }
 
         .search-input {
@@ -82,6 +88,7 @@
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
+            font-feature-settings: "lnum" 1;
         }
 
         .search-input:focus {
@@ -95,20 +102,24 @@
             top: 50%;
             transform: translateY(-50%);
             color: #a0aec0;
+            pointer-events: none;
         }
 
         .user-menu {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .notification-btn, .logout-btn {
-            padding: 10px;
+            padding: 10px 15px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .notification-btn {
@@ -119,15 +130,21 @@
         .logout-btn {
             background: linear-gradient(135deg, #fc8181, #f56565);
             color: white;
-            padding: 10px 20px;
         }
 
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(252, 129, 129, 0.3);
+        }
+
+        /* Main Content Layout */
         .main-content {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
+            align-items: flex-start;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -136,6 +153,9 @@
             width: 280px;
             height: fit-content;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            position: sticky;
+            top: 20px;
         }
 
         .sidebar h3 {
@@ -156,6 +176,7 @@
             transition: all 0.3s ease;
             color: #4a5568;
             text-decoration: none;
+            font-size: 14px;
         }
 
         .menu-item:hover, .menu-item.active {
@@ -170,13 +191,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
+        /* Content Area */
         .content-area {
             flex: 1;
             min-width: 0;
         }
 
+        /* Dashboard Cards */
         .dashboard-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -231,6 +256,7 @@
             justify-content: center;
             color: white;
             font-size: 24px;
+            flex-shrink: 0;
         }
 
         .card.total .card-icon { background: linear-gradient(135deg, #4299e1, #3182ce); }
@@ -239,18 +265,20 @@
         .card.warranty .card-icon { background: linear-gradient(135deg, #9f7aea, #805ad5); }
 
         .card-number {
-            font-size: 36px;
+            font-size: clamp(28px, 6vw, 36px);
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 5px;
+            font-feature-settings: "lnum" 1;
         }
 
         .card-title {
             color: #718096;
-            font-size: 14px;
+            font-size: clamp(12px, 3vw, 14px);
             font-weight: 500;
         }
 
+        /* Projects Section */
         .projects-section {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -270,10 +298,11 @@
 
         .section-title {
             color: #2d3748;
-            font-size: 24px;
+            font-size: clamp(20px, 5vw, 24px);
             font-weight: 600;
         }
 
+        /* Project Cards */
         .project-card {
             background: white;
             border-radius: 12px;
@@ -306,10 +335,11 @@
 
         .project-title {
             color: #2d3748;
-            font-size: 18px;
+            font-size: clamp(16px, 4vw, 18px);
             font-weight: 600;
             flex: 1;
             min-width: 200px;
+            line-height: 1.4;
         }
 
         .project-number {
@@ -319,6 +349,8 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
+            white-space: nowrap;
+            font-feature-settings: "lnum" 1;
         }
 
         .project-details {
@@ -332,26 +364,32 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            min-width: 0;
         }
 
         .detail-icon {
             width: 16px;
             height: 16px;
             color: #718096;
+            flex-shrink: 0;
         }
 
         .detail-label {
             color: #718096;
             font-size: 14px;
             min-width: 60px;
+            flex-shrink: 0;
         }
 
         .detail-value {
             color: #2d3748;
             font-size: 14px;
             font-weight: 500;
+            word-break: break-word;
+            font-feature-settings: "lnum" 1;
         }
 
+        /* Progress Section */
         .progress-section {
             margin-top: 15px;
             padding-top: 15px;
@@ -375,6 +413,7 @@
             color: #2d3748;
             font-size: 14px;
             font-weight: 600;
+            font-feature-settings: "lnum" 1;
         }
 
         .progress-bar {
@@ -392,6 +431,7 @@
             transition: width 0.3s ease;
         }
 
+        /* Team Section */
         .team-section {
             margin-top: 15px;
             padding-top: 15px;
@@ -408,20 +448,24 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            min-width: 0;
         }
 
         .team-role {
             color: #718096;
             font-size: 12px;
             min-width: 50px;
+            flex-shrink: 0;
         }
 
         .team-name {
             color: #2d3748;
             font-size: 12px;
             font-weight: 500;
+            word-break: break-word;
         }
 
+        /* Login Styles */
         .login-container {
             display: flex;
             align-items: center;
@@ -456,14 +500,14 @@
 
         .login-title {
             color: #2d3748;
-            font-size: 28px;
+            font-size: clamp(24px, 6vw, 28px);
             font-weight: 700;
             margin-bottom: 10px;
         }
 
         .login-subtitle {
             color: #718096;
-            font-size: 16px;
+            font-size: clamp(14px, 4vw, 16px);
             margin-bottom: 30px;
         }
 
@@ -490,6 +534,7 @@
             transition: all 0.3s ease;
             direction: ltr;
             text-align: right;
+            font-feature-settings: "lnum" 1;
         }
 
         .form-input:focus {
@@ -529,12 +574,57 @@
         .footer {
             text-align: center;
             color: #718096;
-            font-size: 14px;
+            font-size: clamp(12px, 3vw, 14px);
             margin-top: 30px;
+            line-height: 1.5;
         }
 
         .hidden {
             display: none !important;
+        }
+
+        /* Mobile Sidebar Toggle */
+        .sidebar-toggle {
+            display: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .dashboard-cards {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 15px;
+            }
+            
+            .sidebar {
+                width: 260px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -546,24 +636,53 @@
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+                padding: 15px;
+            }
+
+            .logo {
+                justify-content: center;
+                min-width: auto;
             }
 
             .search-container {
                 max-width: 100%;
-                margin: 0;
+                min-width: auto;
+            }
+
+            .user-menu {
+                justify-content: center;
             }
 
             .main-content {
                 flex-direction: column;
+                gap: 15px;
             }
 
             .sidebar {
-                width: 100%;
-                order: 2;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                z-index: 1000;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+            }
+
+            .sidebar.open {
+                right: 0;
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .sidebar-overlay.show {
+                display: block;
             }
 
             .content-area {
-                order: 1;
+                width: 100%;
             }
 
             .dashboard-cards {
@@ -582,6 +701,17 @@
 
             .login-card {
                 padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .project-title {
+                min-width: auto;
             }
         }
 
@@ -590,12 +720,50 @@
                 grid-template-columns: 1fr;
             }
 
-            .card-number {
-                font-size: 28px;
+            .card {
+                padding: 20px;
             }
 
-            .project-title {
-                font-size: 16px;
+            .project-card {
+                padding: 15px;
+            }
+
+            .projects-section {
+                padding: 20px;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .detail-label {
+                min-width: auto;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidebar, .header .user-menu, .sidebar-toggle {
+                display: none !important;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .content-area {
+                width: 100% !important;
+            }
+            
+            body {
+                background: white !important;
+            }
+            
+            .card, .projects-section, .project-card {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
             }
         }
     </style>
@@ -635,6 +803,10 @@
 
     <!-- الصفحة الرئيسية -->
     <div id="mainPage" class="hidden">
+        <!-- زر القائمة للجوال -->
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
         <div class="container">
             <!-- الهيدر -->
             <header class="header">
@@ -659,7 +831,7 @@
 
             <div class="main-content">
                 <!-- الشريط الجانبي -->
-                <aside class="sidebar">
+                <aside class="sidebar" id="sidebar">
                     <h3>القائمة الرئيسية</h3>
                     <nav>
                         <a href="#" class="menu-item active" onclick="showDashboard()">
@@ -764,30 +936,30 @@
     </div>
 
     <script>
-        // بيانات المشاريع الكاملة
+        // بيانات المشاريع الكاملة مع الأرقام الإنجليزية
         const projectsData = [
             {
                 id: 1,
                 projectNumber: "PRJ-2025-001",
-                projectName: "هدم وإعادة بناء م س 753 مسجد وبيت إمام تصميم خاص",
+                projectName: "هدم واعادة بناء م س 753 مسجد وبيت امام تصميم خاص",
                 fundingEntity: "متبرع",
                 fundingSource: "الشيخ / فيصل بن قاسم آل ثاني",
-                contractNumber: "غير محدد",
-                projectCode: "غير محدد",
-                regionName: "عنيزة",
+                contractNumber: "ديوان العمارة 127/12/127/2017",
+                projectCode: "تحت اشراف مكتب استشاري",
+                regionName: "عنيزه",
                 landNumber: "م س 753",
-                contractor: "دروائد للتجارة والمقاولات",
+                contractor: "درواند للتجارة والمقاولات",
                 contractValue: 35000000,
-                startDate: "غير محدد",
-                endDate: "غير محدد",
-                adjustedEndDate: "",
+                startDate: "2019-01-06",
+                endDate: "2020-06-28",
+                adjustedEndDate: "2021-09-30",
                 currentProgress: 99,
                 status: "active",
-                projectManager: "م.ياسر عبد المولى",
+                projectManager: "لايوجد",
                 consultantExists: false,
                 consultantName: "م.ياسر عبد المولى",
                 projectUpdates: "9",
-                notes: "يوجد استشاري على المشروع / مكتب الاتفاق",
+                notes: "تم استخراج شهادة إتمام البناء للمشروع عن طريق مكتب استشاري خارجي من قبل المتبرع وجارى اجراءات تسليم مستندات المشروع للترقيم رسميا",
                 architecturalEngineer: "غير محدد",
                 mechanicalEngineer: "م.ياسر عبد المولى",
                 electricalEngineer: "م.أحمد مرسي",
@@ -798,25 +970,25 @@
                 projectNumber: "PRJ-2025-002",
                 projectName: "مسجد نموذج خاص",
                 fundingEntity: "متبرع",
-                fundingSource: "غانم سلطان الهيدوس",
-                contractNumber: "غير محدد",
-                projectCode: "غير محدد",
-                regionName: "روضة أقديم",
+                fundingSource: "غانم سلطان الهدبفي",
+                contractNumber: "----",
+                projectCode: "------",
+                regionName: "روضة اقديم",
                 landNumber: "أ د 1141",
                 contractor: "المساكن للتجارة والمقاولات",
-                contractValue: 2400000,
-                startDate: "غير محدد",
-                endDate: "غير محدد",
-                adjustedEndDate: "",
+                contractValue: 4200000,
+                startDate: "2016-04-01",
+                endDate: "2019-02-28",
+                adjustedEndDate: "2019-02-28",
                 currentProgress: 99,
                 status: "active",
-                projectManager: "م.عبدالعظيم",
+                projectManager: "لايوجد",
                 consultantExists: false,
-                consultantName: "م.عبدالعظيم",
-                projectUpdates: "9",
-                notes: "",
+                consultantName: "م/عبدالعظيم",
+                projectUpdates: "10",
+                notes: "حسب اخر افادة من مهندس الاستشاري بأن الأمور المعلقة بسبب وفاه المتبرع رحمه الله ومتعلق الأمر بسبب الورثة",
                 architecturalEngineer: "غير محدد",
-                mechanicalEngineer: "م.عبدالعظيم",
+                mechanicalEngineer: "م/عبدالعظيم",
                 electricalEngineer: "م.عبد الرحمن الموافي",
                 civilEngineer: "م. حزام"
             },
@@ -824,27 +996,27 @@
                 id: 3,
                 projectNumber: "PRJ-2025-003",
                 projectName: "مشروع مسجد M126A وبيت إمام I.H10B",
-                fundingEntity: "متبرع",
-                fundingSource: "إبراهيم هلال محمد الإبراهيم",
-                contractNumber: "غير محدد",
-                projectCode: "غير محدد",
-                regionName: "روضة العمدة",
-                landNumber: "ج ر 1308",
-                contractor: "شركة البادي للتجارة والإنشاءات الهندسية",
-                contractValue: 4064000,
-                startDate: "غير محدد",
-                endDate: "غير محدد",
-                adjustedEndDate: "",
+                fundingEntity: "متبرع مودع - إدارة الأوقاف",
+                fundingSource: "إبراهيم هلال محمد الابراهيم المهندي",
+                contractNumber: "1878/2019",
+                projectCode: "AWQ 19/19",
+                regionName: "روضة العقدة",
+                landNumber: "أ د 1308",
+                contractor: "شركة البادي للتجارة والانشاءات الهندسية",
+                contractValue: 4548000,
+                startDate: "2020-01-12",
+                endDate: "2021-05-25",
+                adjustedEndDate: "2022-01-03",
                 currentProgress: 99,
                 status: "active",
-                projectManager: "م.عامر عليان",
+                projectManager: "لايوجد",
                 consultantExists: false,
                 consultantName: "م.عامر عليان",
                 projectUpdates: "9",
-                notes: "",
+                notes: "تم التعاقد مع الانباط للبدء في ملاحظات الاستلام الابتدائي",
                 architecturalEngineer: "غير محدد",
                 mechanicalEngineer: "م.عامر عليان",
-                electricalEngineer: "م.عروة",
+                electricalEngineer: "م عمر هاشم",
                 civilEngineer: "م.مصعب"
             },
             {
@@ -853,22 +1025,22 @@
                 projectName: "مشروع مسجد M117A وبيت إمام I.H7",
                 fundingEntity: "متبرع",
                 fundingSource: "ورثة الشيخ/محمد بن عبدالعزيز بن جاسم آل ثاني",
-                contractNumber: "غير محدد",
-                projectCode: "غير محدد",
-                regionName: "الخمسة",
-                landNumber: "ج ر 1089",
-                contractor: "جاسم",
+                contractNumber: "DO-2016-107/28/285",
+                projectCode: "AWQ 25/15",
+                regionName: "الخيسة",
+                landNumber: "أ د 1089",
+                contractor: "جناس",
                 contractValue: 8000000,
-                startDate: "غير محدد",
-                endDate: "غير محدد",
-                adjustedEndDate: "",
+                startDate: "2016-09-07",
+                endDate: "2018-01-20",
+                adjustedEndDate: "2018-01-20",
                 currentProgress: 99,
                 status: "active",
-                projectManager: "م.ياسر عبد المولى",
+                projectManager: "لايوجد",
                 consultantExists: false,
                 consultantName: "م.ياسر عبد المولى",
                 projectUpdates: "9",
-                notes: "",
+                notes: "المشروع مكتمل وجاري استلامه نهائياً",
                 architecturalEngineer: "غير محدد",
                 mechanicalEngineer: "م.ياسر عبد المولى",
                 electricalEngineer: "م.أحمد مرسي",
@@ -912,6 +1084,7 @@
             document.getElementById('loginPage').classList.remove('hidden');
             document.getElementById('email').value = 'alzooool33@gmail.com';
             document.getElementById('password').value = '123456';
+            closeSidebar();
         }
 
         // تحميل لوحة التحكم
@@ -938,6 +1111,11 @@
             const container = document.getElementById('projectsList');
             container.innerHTML = '';
 
+            if (projects.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #718096;">لا توجد مشاريع تطابق البحث</div>';
+                return;
+            }
+
             projects.forEach(project => {
                 const projectCard = createProjectCard(project);
                 container.appendChild(projectCard);
@@ -948,6 +1126,9 @@
         function createProjectCard(project) {
             const card = document.createElement('div');
             card.className = 'project-card';
+            
+            // تنسيق قيمة العقد
+            const formattedValue = new Intl.NumberFormat('en-US').format(project.contractValue);
             
             card.innerHTML = `
                 <div class="project-header">
@@ -969,12 +1150,22 @@
                     <div class="detail-item">
                         <span class="detail-icon">💰</span>
                         <span class="detail-label">قيمة العقد:</span>
-                        <span class="detail-value">${project.contractValue.toLocaleString()} ريال</span>
+                        <span class="detail-value">${formattedValue} ريال</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-icon">👤</span>
                         <span class="detail-label">المتبرع:</span>
                         <span class="detail-value">${project.fundingSource}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🏠</span>
+                        <span class="detail-label">رقم الأرض:</span>
+                        <span class="detail-value">${project.landNumber}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📋</span>
+                        <span class="detail-label">رقم العقد:</span>
+                        <span class="detail-value">${project.contractNumber}</span>
                     </div>
                 </div>
 
@@ -991,15 +1182,30 @@
                 <div class="team-section">
                     <div class="team-grid">
                         <div class="team-member">
-                            <span class="team-role">المدير:</span>
-                            <span class="team-name">${project.projectManager}</span>
-                        </div>
-                        <div class="team-member">
                             <span class="team-role">الاستشاري:</span>
                             <span class="team-name">${project.consultantName}</span>
                         </div>
+                        <div class="team-member">
+                            <span class="team-role">م. ميكانيكي:</span>
+                            <span class="team-name">${project.mechanicalEngineer}</span>
+                        </div>
+                        <div class="team-member">
+                            <span class="team-role">م. كهربائي:</span>
+                            <span class="team-name">${project.electricalEngineer}</span>
+                        </div>
+                        <div class="team-member">
+                            <span class="team-role">م. مدني:</span>
+                            <span class="team-name">${project.civilEngineer}</span>
+                        </div>
                     </div>
                 </div>
+
+                ${project.notes ? `
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                    <div style="color: #4a5568; font-size: 12px; margin-bottom: 5px;">ملاحظات:</div>
+                    <div style="color: #2d3748; font-size: 13px; line-height: 1.4;">${project.notes}</div>
+                </div>
+                ` : ''}
             `;
 
             return card;
@@ -1017,7 +1223,9 @@
                     project.projectNumber.toLowerCase().includes(searchTerm) ||
                     project.regionName.toLowerCase().includes(searchTerm) ||
                     project.contractor.toLowerCase().includes(searchTerm) ||
-                    project.fundingSource.toLowerCase().includes(searchTerm)
+                    project.fundingSource.toLowerCase().includes(searchTerm) ||
+                    project.landNumber.toLowerCase().includes(searchTerm) ||
+                    project.contractNumber.toLowerCase().includes(searchTerm)
                 );
             }
             
@@ -1028,23 +1236,27 @@
         function showDashboard() {
             updateActiveMenuItem(0);
             displayProjects(projectsData.slice(0, 10));
+            closeSidebar();
         }
 
         function showProjects() {
             updateActiveMenuItem(1);
             displayProjects(projectsData);
+            closeSidebar();
         }
 
         function showCompleted() {
             updateActiveMenuItem(2);
             const completedProjects = projectsData.filter(p => p.status === 'completed');
             displayProjects(completedProjects);
+            closeSidebar();
         }
 
         function showWarranty() {
             updateActiveMenuItem(3);
             const warrantyProjects = projectsData.filter(p => p.status === 'warranty');
             displayProjects(warrantyProjects);
+            closeSidebar();
         }
 
         function updateActiveMenuItem(index) {
@@ -1057,6 +1269,30 @@
                 }
             });
         }
+
+        // وظائف الشريط الجانبي للجوال
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        // إغلاق الشريط الجانبي عند تغيير حجم الشاشة
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
 
         // تحميل الصفحة
         window.addEventListener('load', function() {
