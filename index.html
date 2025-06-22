@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة المشاريع قسم الإنشاءات</title>
+    <title>نظام إدارة المشاريع - قسم الإنشاءات</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -19,120 +19,149 @@
             direction: rtl;
         }
 
-        /* شريط علوي */
-        .top-bar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
+        /* صفحة تسجيل الدخول */
+        .login-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .search-container {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 8px 15px;
-            min-width: 300px;
-        }
-
-        .search-container input {
-            background: none;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 14px;
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             width: 100%;
-            margin-left: 10px;
+            max-width: 400px;
+            text-align: center;
         }
 
-        .search-container input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .notifications {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .notification-icon {
-            position: relative;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff4444;
-            color: white;
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 24px;
         }
 
-        /* الحاوي الرئيسي */
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* الواجهة الرئيسية */
         .main-container {
-            display: flex;
-            min-height: calc(100vh - 60px);
+            display: none;
+            min-height: 100vh;
         }
 
-        /* القائمة الجانبية */
         .sidebar {
             width: 280px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            height: 100vh;
             overflow-y: auto;
+            z-index: 1000;
         }
 
         .sidebar-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-align: center;
-            padding: 0 20px 30px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 20px;
         }
 
-        .sidebar-header h2 {
-            color: #333;
+        .sidebar-title {
             font-size: 18px;
+            font-weight: bold;
             margin-bottom: 5px;
         }
 
-        .sidebar-header p {
-            color: #666;
+        .sidebar-subtitle {
             font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 15px 20px;
+            padding: 15px 25px;
             color: #333;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             border-right: 3px solid transparent;
-            cursor: pointer;
         }
 
-        .menu-item:hover {
-            background: rgba(102, 126, 234, 0.1);
-            border-right-color: #667eea;
-        }
-
-        .menu-item.active {
-            background: rgba(102, 126, 234, 0.15);
+        .menu-item:hover, .menu-item.active {
+            background: #f8f9fa;
             border-right-color: #667eea;
             color: #667eea;
         }
@@ -143,54 +172,59 @@
             font-size: 16px;
         }
 
-        .menu-item .badge {
-            margin-right: auto;
-            background: #ff4444;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
+        .content {
+            margin-right: 280px;
+            padding: 20px;
+            min-height: 100vh;
         }
 
-        /* المحتوى الرئيسي */
-        .main-content {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-        }
-
-        .page-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+        .top-bar {
+            background: white;
+            padding: 15px 25px;
             border-radius: 15px;
-            padding: 20px 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .page-title {
-            color: #333;
-            font-size: 24px;
-            font-weight: 600;
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .logout-btn {
-            background: #ff4444;
+            background: #dc3545;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 8px 15px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: #cc3333;
-            transform: translateY(-2px);
         }
 
         /* بطاقات الإحصائيات */
@@ -202,116 +236,103 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
         }
 
-        .stat-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .stat-card.total::before { background: #3498db; }
+        .stat-card.active::before { background: #f39c12; }
+        .stat-card.completed::before { background: #27ae60; }
+        .stat-card.warranty::before { background: #e74c3c; }
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 15px;
-            font-size: 24px;
             color: white;
+            font-size: 24px;
         }
 
-        .stat-info h3 {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .stat-info p {
-            color: #666;
-            font-size: 12px;
-        }
+        .stat-card.total .stat-icon { background: #3498db; }
+        .stat-card.active .stat-icon { background: #f39c12; }
+        .stat-card.completed .stat-icon { background: #27ae60; }
+        .stat-card.warranty .stat-icon { background: #e74c3c; }
 
         .stat-number {
             font-size: 36px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        .stat-subtitle {
+        .stat-label {
             color: #666;
             font-size: 14px;
         }
 
-        /* قسم المشاريع */
+        .stat-sublabel {
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* قائمة المشاريع */
         .projects-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 2px solid #f8f9fa;
         }
 
         .section-title {
-            color: #333;
             font-size: 20px;
-            font-weight: 600;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .search-box {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            width: 300px;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        /* قائمة المشاريع */
-        .projects-list {
-            display: grid;
-            gap: 20px;
-        }
-
-        .project-card {
+        .project-item {
             background: #f8f9fa;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 20px;
+            margin-bottom: 15px;
             border-right: 4px solid #667eea;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .project-card:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        .project-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .project-header {
@@ -322,263 +343,344 @@
         }
 
         .project-title {
+            font-weight: bold;
             color: #333;
             font-size: 16px;
-            font-weight: 600;
             margin-bottom: 5px;
         }
 
         .project-number {
             color: #666;
-            font-size: 12px;
-        }
-
-        .project-status {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .status-active {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .project-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-        }
-
-        .detail-item i {
-            color: #667eea;
-            margin-left: 8px;
-            width: 16px;
-        }
-
-        .detail-label {
-            color: #666;
-            font-size: 12px;
-            margin-left: 5px;
-        }
-
-        .detail-value {
-            color: #333;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .progress-section {
-            margin-top: 15px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .progress-label {
-            color: #666;
-            font-size: 12px;
-        }
-
-        .progress-value {
-            color: #333;
             font-size: 14px;
-            font-weight: 600;
+        }
+
+        .project-progress {
+            text-align: left;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
         }
 
         .progress-bar {
-            width: 100%;
+            width: 100px;
             height: 8px;
-            background: #e0e0e0;
+            background: #e1e5e9;
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
             border-radius: 4px;
-            transition: width 0.3s ease;
+            transition: width 0.3s;
         }
 
-        /* الألوان للبطاقات */
-        .stat-card.total { --color: #2196f3; }
-        .stat-card.active { --color: #2196f3; }
-        .stat-card.completed { --color: #4caf50; }
-        .stat-card.warranty { --color: #9c27b0; }
-        .stat-card.planning { --color: #ff9800; }
-
-        .stat-card .stat-icon {
-            background: var(--color);
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e1e5e9;
         }
 
-        /* تصميم متجاوب */
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .detail-item i {
+            color: #667eea;
+            width: 16px;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* تفاصيل المشروع المنبثقة */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 20px auto;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .info-section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .notes-section {
+            grid-column: 1 / -1;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .notes-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .notes-text {
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        /* التصميم المتجاوب */
         @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            
             .sidebar {
                 width: 100%;
-                height: auto;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
             }
-            
-            .main-content {
-                padding: 20px;
+
+            .sidebar.open {
+                transform: translateX(0);
             }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
+
+            .content {
+                margin-right: 0;
             }
-            
-            .search-container {
-                min-width: 200px;
-            }
-            
-            .page-header {
+
+            .top-bar {
                 flex-direction: column;
                 gap: 15px;
-                text-align: center;
             }
-            
+
+            .search-box {
+                max-width: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
             .project-details {
                 grid-template-columns: 1fr;
             }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* حالة التحميل */
+        .mobile-menu-btn {
+            display: none;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* أنماط إضافية للتحسين */
+        .highlight {
+            background: #fff3cd !important;
+            border-color: #ffeaa7 !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
+            text-align: center;
+            padding: 40px;
             color: #666;
         }
 
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* حالة فارغة */
-        .empty-state {
+        .no-results {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px;
             color: #666;
-        }
-
-        .empty-state i {
-            font-size: 64px;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
-
-        .empty-state h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* تذييل الصفحة */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <!-- شريط علوي -->
-    <div class="top-bar">
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="البحث السريع...">
-        </div>
-        <div class="notifications">
-            <div class="notification-icon">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">3</span>
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-building"></i>
             </div>
-            <div class="notification-icon">
-                <i class="fas fa-envelope"></i>
-                <span class="notification-badge">5</span>
-            </div>
-            <div class="notification-icon">
-                <i class="fas fa-user-circle"></i>
-            </div>
+            <h1 class="login-title">نظام إدارة المشاريع</h1>
+            <p class="login-subtitle">قسم الإنشاءات</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني *</label>
+                    <input type="email" class="form-input" id="email" value="alzooool33@gmail.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور *</label>
+                    <input type="password" class="form-input" id="password" value="123456" required>
+                </div>
+                
+                <button type="submit" class="login-btn">تسجيل الدخول</button>
+            </form>
+            
+            <p class="footer-text">
+                للدعم الفني، تواصل مع الإدارة<br>
+                جميع الحقوق محفوظة © 2024 - محمد عبدالرحيم نور
+            </p>
         </div>
     </div>
 
-    <div class="main-container">
-        <!-- القائمة الجانبية -->
-        <div class="sidebar">
+    <!-- الواجهة الرئيسية -->
+    <div id="mainApp" class="main-container">
+        <!-- الشريط الجانبي -->
+        <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2>نظام إدارة المشاريع</h2>
-                <p>قسم الإنشاءات</p>
+                <div class="sidebar-title">لوحة التحكم</div>
+                <div class="sidebar-subtitle">نظام إدارة المشاريع - قسم الإنشاءات</div>
             </div>
             
-            <nav>
-                <a href="#" class="menu-item active" onclick="showPage('dashboard')">
-                    <i class="fas fa-th-large"></i>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-page="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
                     لوحة التحكم
                 </a>
-                <a href="#" class="menu-item" onclick="showPage('projects')">
+                <a href="#" class="menu-item" data-page="projects">
                     <i class="fas fa-building"></i>
                     المشاريع
-                    <span class="badge">82</span>
                 </a>
-                <a href="#" class="menu-item" onclick="showPage('completed')">
+                <a href="#" class="menu-item" data-page="completed">
                     <i class="fas fa-check-circle"></i>
                     المشاريع المكتملة
                 </a>
-                <a href="#" class="menu-item" onclick="showPage('warranty')">
+                <a href="#" class="menu-item" data-page="warranty">
                     <i class="fas fa-shield-alt"></i>
                     المشاريع تحت الضمان
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="buildings">
                     <i class="fas fa-city"></i>
                     المباني
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="maintenance-requests">
                     <i class="fas fa-tools"></i>
                     طلبات الصيانة
-                    <span class="badge">12</span>
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="maintenance-tasks">
                     <i class="fas fa-clipboard-list"></i>
                     مهام الصيانة
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="reports">
                     <i class="fas fa-chart-bar"></i>
                     التقارير
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="users">
                     <i class="fas fa-users"></i>
                     المستخدمين
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" class="menu-item" data-page="settings">
                     <i class="fas fa-cog"></i>
                     الإعدادات
                 </a>
@@ -586,171 +688,139 @@
         </div>
 
         <!-- المحتوى الرئيسي -->
-        <div class="main-content">
-            <!-- صفحة لوحة التحكم -->
-            <div id="dashboard-page" class="page">
-                <div class="page-header">
-                    <h1 class="page-title">لوحة التحكم</h1>
+        <div class="content">
+            <!-- الشريط العلوي -->
+            <div class="top-bar">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="البحث في المشاريع...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <div class="user-info">
+                    <span>مرحباً، محمد عبدالرحيم نور</span>
                     <button class="logout-btn" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i>
-                        تسجيل الخروج
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                     </button>
                 </div>
+            </div>
 
-                <!-- بطاقات الإحصائيات -->
-                <div class="stats-grid">
-                    <div class="stat-card total" onclick="showPage('projects')">
-                        <div class="stat-header">
+            <!-- محتوى الصفحات -->
+            <div id="pageContent">
+                <!-- لوحة التحكم -->
+                <div id="dashboardPage" class="page-content">
+                    <!-- بطاقات الإحصائيات -->
+                    <div class="stats-grid">
+                        <div class="stat-card total">
                             <div class="stat-icon">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <div class="stat-info">
-                                <h3>إجمالي المشاريع</h3>
-                                <p>0 قيد التنفيذ</p>
-                            </div>
+                            <div class="stat-number" id="totalProjects">82</div>
+                            <div class="stat-label">إجمالي المشاريع</div>
+                            <div class="stat-sublabel">0 قيد التنفيذ</div>
                         </div>
-                        <div class="stat-number">82</div>
-                        <div class="stat-subtitle">إجمالي المشاريع</div>
-                    </div>
-
-                    <div class="stat-card active">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>قيد التنفيذ</h3>
-                                <p>مشاريع نشطة</p>
-                            </div>
-                        </div>
-                        <div class="stat-number">82</div>
-                        <div class="stat-subtitle">المشاريع النشطة</div>
-                    </div>
-
-                    <div class="stat-card completed" onclick="showPage('completed')">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>مكتملة</h3>
-                                <p>مشاريع منجزة</p>
-                            </div>
-                        </div>
-                        <div class="stat-number">0</div>
-                        <div class="stat-subtitle">المشاريع المكتملة</div>
-                    </div>
-
-                    <div class="stat-card warranty" onclick="showPage('warranty')">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3>تحت الضمان</h3>
-                                <p>مشاريع ضمان</p>
-                            </div>
-                        </div>
-                        <div class="stat-number">0</div>
-                        <div class="stat-subtitle">تحت الضمان</div>
-                    </div>
-
-                    <div class="stat-card planning">
-                        <div class="stat-header">
+                        
+                        <div class="stat-card active">
                             <div class="stat-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <div class="stat-info">
-                                <h3>قيد التخطيط</h3>
-                                <p>مشاريع جديدة</p>
-                            </div>
+                            <div class="stat-number" id="activeProjects">82</div>
+                            <div class="stat-label">قيد التخطيط</div>
+                            <div class="stat-sublabel">مشاريع جديدة</div>
                         </div>
-                        <div class="stat-number">0</div>
-                        <div class="stat-subtitle">قيد التخطيط</div>
+                        
+                        <div class="stat-card completed">
+                            <div class="stat-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="stat-number" id="completedProjects">0</div>
+                            <div class="stat-label">مكتملة</div>
+                            <div class="stat-sublabel">مشاريع منجزة</div>
+                        </div>
+                        
+                        <div class="stat-card warranty">
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="stat-number" id="warrantyProjects">0</div>
+                            <div class="stat-label">ضمان ساري</div>
+                            <div class="stat-sublabel">ضمان شامل</div>
+                        </div>
+                    </div>
+
+                    <!-- قائمة المشاريع -->
+                    <div class="projects-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-chart-line"></i>
+                                أحدث المشاريع
+                            </h2>
+                        </div>
+                        
+                        <div id="projectsList" class="loading">
+                            جاري تحميل المشاريع...
+                        </div>
                     </div>
                 </div>
 
-                <!-- قسم أحدث المشاريع -->
-                <div class="projects-section">
-                    <div class="section-header">
-                        <h2 class="section-title">أحدث المشاريع</h2>
-                        <input type="text" class="search-box" placeholder="البحث في المشاريع..." id="projectSearch" oninput="filterProjects()">
-                    </div>
-                    
-                    <div id="projects-container" class="projects-list">
-                        <!-- سيتم تحميل المشاريع هنا -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- صفحة المشاريع -->
-            <div id="projects-page" class="page" style="display: none;">
-                <div class="page-header">
-                    <h1 class="page-title">جميع المشاريع</h1>
-                    <div>
-                        <button class="logout-btn" style="background: #4caf50; margin-left: 10px;">
-                            <i class="fas fa-plus"></i>
-                            إضافة مشروع
-                        </button>
-                        <button class="logout-btn" style="background: #2196f3;">
-                            <i class="fas fa-file-excel"></i>
-                            تصدير Excel
-                        </button>
+                <!-- صفحات أخرى -->
+                <div id="projectsPage" class="page-content" style="display: none;">
+                    <div class="projects-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-building"></i>
+                                جميع المشاريع
+                            </h2>
+                        </div>
+                        <div id="allProjectsList"></div>
                     </div>
                 </div>
 
-                <div class="projects-section">
-                    <div class="section-header">
-                        <h2 class="section-title">قائمة المشاريع (82 مشروع)</h2>
-                        <input type="text" class="search-box" placeholder="البحث في المشاريع..." id="allProjectsSearch" oninput="filterAllProjects()">
-                    </div>
-                    
-                    <div id="all-projects-container" class="projects-list">
-                        <!-- سيتم تحميل جميع المشاريع هنا -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- صفحة المشاريع المكتملة -->
-            <div id="completed-page" class="page" style="display: none;">
-                <div class="page-header">
-                    <h1 class="page-title">المشاريع المكتملة</h1>
-                </div>
-
-                <div class="projects-section">
-                    <div class="empty-state">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>لا توجد مشاريع مكتملة</h3>
-                        <p>لم يتم العثور على أي مشاريع مكتملة حتى الآن</p>
+                <div id="completedPage" class="page-content" style="display: none;">
+                    <div class="projects-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-check-circle"></i>
+                                المشاريع المكتملة
+                            </h2>
+                        </div>
+                        <div class="no-results">لا توجد مشاريع مكتملة حالياً</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- صفحة المشاريع تحت الضمان -->
-            <div id="warranty-page" class="page" style="display: none;">
-                <div class="page-header">
-                    <h1 class="page-title">المشاريع تحت الضمان</h1>
-                </div>
-
-                <div class="projects-section">
-                    <div class="empty-state">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>لا توجد مشاريع تحت الضمان</h3>
-                        <p>لم يتم العثور على أي مشاريع تحت الضمان حتى الآن</p>
+                <div id="warrantyPage" class="page-content" style="display: none;">
+                    <div class="projects-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-shield-alt"></i>
+                                المشاريع تحت الضمان
+                            </h2>
+                        </div>
+                        <div class="no-results">لا توجد مشاريع تحت الضمان حالياً</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- تذييل الصفحة -->
-    <div class="footer">
-        للدعم الفني، تواصل مع الإدارة<br>
-        جميع الحقوق محفوظة © 2024 - محمد عبدالرحيم نور
+    <!-- نافذة تفاصيل المشروع -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalProjectTitle">تفاصيل المشروع</h3>
+                <button class="close-btn" onclick="closeProjectModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalProjectDetails">
+                <!-- سيتم ملء التفاصيل هنا بواسطة JavaScript -->
+            </div>
+        </div>
     </div>
 
     <script>
-        // بيانات المشاريع الأصلية
+        // بيانات المشاريع الكاملة
         const projectsData = [
             {
                 "id": 1,
@@ -759,6 +829,7 @@
                 "fundingEntity": "متبرع",
                 "fundingSource": "الشيخ / فيصل بن قاسم آل ثاني",
                 "contractNumber": "ديوان العمارة 127/12/127/2017",
+                "projectCode": "تحت اشراف مكتب استشاري",
                 "regionName": "عنيزه",
                 "landNumber": "م س 753",
                 "contractor": "درواند للتجارة والمقاولات",
@@ -768,10 +839,14 @@
                 "adjustedEndDate": "2021-09-30",
                 "currentProgress": 99.0,
                 "status": "active",
-                "projectManager": "م.ياسر عبد المولى",
+                "projectManager": "لايوجد",
                 "consultantName": "م.ياسر عبد المولى",
                 "projectUpdates": "9",
-                "notes": "تم استخراج شهادة إتمام البناء للمشروع عن طريق مكتب استشاري خارجي من قبل المتبرع وجارى اجراءات تسليم مستندات المشروع للترقيم رسميا"
+                "notes": "تم استخراج شهادة إتمام البناء للمشروع عن طريق مكتب استشاري خارجي من قبل المتبرع وجارى اجراءات تسليم مستندات المشروع للترقيم رسميا",
+                "architecturalEngineer": "غير محدد",
+                "mechanicalEngineer": "م.ياسر عبد المولى",
+                "electricalEngineer": "م.أحمد مرسي",
+                "civilEngineer": "م.يسري"
             },
             {
                 "id": 2,
@@ -779,295 +854,389 @@
                 "projectName": "مسجد نموذج خاص",
                 "fundingEntity": "متبرع",
                 "fundingSource": "غانم سلطان الهدبفي",
+                "contractNumber": "----",
+                "projectCode": "------",
                 "regionName": "روضة اقديم",
                 "landNumber": "أ د 1141",
                 "contractor": "المساكن للتجارة والمقاولات",
                 "contractValue": 4200000.0,
                 "startDate": "2016-04-01",
                 "endDate": "2019-02-28",
+                "adjustedEndDate": "2019-02-28",
                 "currentProgress": 99.0,
                 "status": "active",
+                "projectManager": "لايوجد",
                 "consultantName": "م/عبدالعظيم",
-                "projectUpdates": "10"
-            },
-            {
-                "id": 3,
-                "projectNumber": "PRJ-2025-003",
-                "projectName": "مشروع مسجد M126A وبيت إمام I.H10B",
-                "fundingEntity": "متبرع",
-                "fundingSource": "إبراهيم هلال محمد الإبراهيم",
-                "regionName": "روضة العمدة",
-                "landNumber": "1308 ج ز أ",
-                "contractor": "شركة النادي للتجارة والإنشاءات الهندسية",
-                "contractValue": 4564000.0,
-                "startDate": "2018-03-15",
-                "endDate": "2020-01-30",
-                "currentProgress": 99.0,
-                "status": "active",
-                "consultantName": "م.عامر عليان",
-                "projectUpdates": "8"
-            },
-            {
-                "id": 4,
-                "projectNumber": "PRJ-2025-004",
-                "projectName": "مشروع مسجد M117A وبيت إمام I.H7",
-                "fundingEntity": "متبرع",
-                "fundingSource": "ورثة الشيخ/محمد بن عبدالعزيز بن جاسم آل ثاني",
-                "regionName": "الحسنة",
-                "landNumber": "1089 ج ز أ",
-                "contractor": "جاسم",
-                "contractValue": 8000000.0,
-                "startDate": "2017-05-20",
-                "endDate": "2019-12-15",
-                "currentProgress": 99.0,
-                "status": "active",
-                "consultantName": "م.ياسر عبد المولى",
-                "projectUpdates": "12"
+                "projectUpdates": "10",
+                "notes": "حسب اخر افادة من مهندس الاستشاري بأن الأمور المعلقة بسبب وفاه المتبرع رحمه الله ومتعلق الأمر بسبب الورثة",
+                "architecturalEngineer": "غير محدد",
+                "mechanicalEngineer": "م/عبدالعظيم",
+                "electricalEngineer": "م.عبد الرحمن الموافي",
+                "civilEngineer": "م. حزام"
             }
+            // سيتم إضافة باقي المشاريع...
         ];
 
+        // متغيرات عامة
+        let currentUser = null;
         let filteredProjects = [...projectsData];
-        let currentPage = 'dashboard';
 
-        // تحميل المشاريع عند بدء الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProjects();
-            updateStats();
+        // تسجيل الدخول
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // التحقق من بيانات الدخول
+            if (email === 'alzooool33@gmail.com' && password === '123456') {
+                currentUser = {
+                    name: 'محمد عبدالرحيم نور',
+                    email: email
+                };
+                
+                // إخفاء صفحة تسجيل الدخول وإظهار الواجهة الرئيسية
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                
+                // تحميل البيانات
+                loadDashboard();
+            } else {
+                alert('بيانات الدخول غير صحيحة');
+            }
         });
 
-        // عرض الصفحات
-        function showPage(pageId) {
-            // إخفاء جميع الصفحات
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.style.display = 'none');
+        // تسجيل الخروج
+        function logout() {
+            currentUser = null;
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('mainApp').style.display = 'none';
             
-            // إزالة الفئة النشطة من جميع عناصر القائمة
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => item.classList.remove('active'));
+            // إعادة تعيين النموذج
+            document.getElementById('loginForm').reset();
+            document.getElementById('email').value = 'alzooool33@gmail.com';
+            document.getElementById('password').value = '123456';
+        }
+
+        // تحميل لوحة التحكم
+        function loadDashboard() {
+            // تحديث الإحصائيات
+            updateStatistics();
             
-            // عرض الصفحة المطلوبة
-            const targetPage = document.getElementById(pageId + '-page');
-            if (targetPage) {
-                targetPage.style.display = 'block';
-                currentPage = pageId;
-            }
-            
-            // إضافة الفئة النشطة للعنصر المحدد
-            event.target.classList.add('active');
-            
-            // تحميل البيانات حسب الصفحة
-            if (pageId === 'projects') {
-                loadAllProjects();
-            }
+            // تحميل قائمة المشاريع
+            loadProjectsList();
         }
 
         // تحديث الإحصائيات
-        function updateStats() {
+        function updateStatistics() {
             const totalProjects = projectsData.length;
             const activeProjects = projectsData.filter(p => p.status === 'active').length;
             const completedProjects = projectsData.filter(p => p.status === 'completed').length;
             const warrantyProjects = projectsData.filter(p => p.status === 'warranty').length;
-            const planningProjects = projectsData.filter(p => p.status === 'planning').length;
-
-            // تحديث أرقام البطاقات
-            const statNumbers = document.querySelectorAll('.stat-number');
-            if (statNumbers.length >= 5) {
-                statNumbers[0].textContent = totalProjects;
-                statNumbers[1].textContent = activeProjects;
-                statNumbers[2].textContent = completedProjects;
-                statNumbers[3].textContent = warrantyProjects;
-                statNumbers[4].textContent = planningProjects;
-            }
-        }
-
-        // تحميل المشاريع في لوحة التحكم
-        function loadProjects() {
-            const container = document.getElementById('projects-container');
-            if (!container) return;
-
-            if (projectsData.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-building"></i>
-                        <h3>لا توجد مشاريع</h3>
-                        <p>ابدأ بإضافة مشروع جديد أو استيراد المشاريع من Excel</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // عرض أول 5 مشاريع فقط في لوحة التحكم
-            const recentProjects = projectsData.slice(0, 5);
             
-            container.innerHTML = recentProjects.map(project => createProjectCard(project)).join('');
+            document.getElementById('totalProjects').textContent = totalProjects;
+            document.getElementById('activeProjects').textContent = activeProjects;
+            document.getElementById('completedProjects').textContent = completedProjects;
+            document.getElementById('warrantyProjects').textContent = warrantyProjects;
         }
 
-        // تحميل جميع المشاريع
-        function loadAllProjects() {
-            const container = document.getElementById('all-projects-container');
-            if (!container) return;
-
+        // تحميل قائمة المشاريع
+        function loadProjectsList() {
+            const container = document.getElementById('projectsList');
+            
             if (filteredProjects.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <h3>لا توجد نتائج</h3>
-                        <p>لم يتم العثور على مشاريع تطابق البحث</p>
-                    </div>
-                `;
+                container.innerHTML = '<div class="no-results">لا توجد مشاريع تطابق البحث</div>';
                 return;
             }
-
-            container.innerHTML = filteredProjects.map(project => createProjectCard(project)).join('');
-        }
-
-        // إنشاء بطاقة مشروع
-        function createProjectCard(project) {
-            const progressColor = project.currentProgress >= 90 ? '#4caf50' : 
-                                 project.currentProgress >= 50 ? '#2196f3' : '#ff9800';
             
-            return `
-                <div class="project-card" onclick="showProjectDetails('${project.id}')">
+            const projectsHTML = filteredProjects.map(project => `
+                <div class="project-item fade-in" onclick="showProjectDetails(${project.id})">
                     <div class="project-header">
                         <div>
                             <div class="project-title">${project.projectName}</div>
                             <div class="project-number">${project.projectNumber}</div>
                         </div>
-                        <div class="project-status status-${project.status}">
-                            ${getStatusText(project.status)}
+                        <div class="project-progress">
+                            <div class="progress-text">نسبة الإنجاز: ${project.currentProgress}%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${project.currentProgress}%"></div>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="project-details">
                         <div class="detail-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span class="detail-label">المنطقة:</span>
+                            <span>المنطقة:</span>
                             <span class="detail-value">${project.regionName}</span>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-map"></i>
-                            <span class="detail-label">رقم الأرض:</span>
+                            <span>رقم الأرض:</span>
                             <span class="detail-value">${project.landNumber}</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-user"></i>
-                            <span class="detail-label">المتبرع:</span>
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>المتبرع:</span>
                             <span class="detail-value">${project.fundingSource}</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-building"></i>
-                            <span class="detail-label">المقاول:</span>
+                            <i class="fas fa-hard-hat"></i>
+                            <span>المقاول:</span>
                             <span class="detail-value">${project.contractor}</span>
                         </div>
                         <div class="detail-item">
                             <i class="fas fa-dollar-sign"></i>
-                            <span class="detail-label">قيمة العقد:</span>
+                            <span>قيمة العقد:</span>
                             <span class="detail-value">${formatCurrency(project.contractValue)} ريال</span>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-user-tie"></i>
-                            <span class="detail-label">الاستشاري:</span>
-                            <span class="detail-value">${project.consultantName || 'غير محدد'}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="progress-section">
-                        <div class="progress-header">
-                            <span class="progress-label">نسبة الإنجاز</span>
-                            <span class="progress-value">${project.currentProgress}%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${project.currentProgress}%; background: ${progressColor};"></div>
+                            <i class="fas fa-calendar"></i>
+                            <span>تاريخ البدء:</span>
+                            <span class="detail-value">${formatDate(project.startDate)}</span>
                         </div>
                     </div>
                 </div>
-            `;
-        }
-
-        // تنسيق العملة
-        function formatCurrency(amount) {
-            return new Intl.NumberFormat('ar-SA').format(amount);
-        }
-
-        // الحصول على نص الحالة
-        function getStatusText(status) {
-            const statusMap = {
-                'active': 'قيد التنفيذ',
-                'completed': 'مكتمل',
-                'warranty': 'تحت الضمان',
-                'planning': 'قيد التخطيط',
-                'suspended': 'متوقف'
-            };
-            return statusMap[status] || 'غير محدد';
-        }
-
-        // فلترة المشاريع في لوحة التحكم
-        function filterProjects() {
-            const searchTerm = document.getElementById('projectSearch').value.toLowerCase();
-            const container = document.getElementById('projects-container');
+            `).join('');
             
-            const filtered = projectsData.filter(project => 
-                project.projectName.toLowerCase().includes(searchTerm) ||
-                project.projectNumber.toLowerCase().includes(searchTerm) ||
-                project.regionName.toLowerCase().includes(searchTerm) ||
-                project.contractor.toLowerCase().includes(searchTerm)
-            );
-
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <h3>لا توجد نتائج</h3>
-                        <p>لم يتم العثور على مشاريع تطابق البحث</p>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = filtered.slice(0, 5).map(project => createProjectCard(project)).join('');
-            }
-        }
-
-        // فلترة جميع المشاريع
-        function filterAllProjects() {
-            const searchTerm = document.getElementById('allProjectsSearch').value.toLowerCase();
-            
-            filteredProjects = projectsData.filter(project => 
-                project.projectName.toLowerCase().includes(searchTerm) ||
-                project.projectNumber.toLowerCase().includes(searchTerm) ||
-                project.regionName.toLowerCase().includes(searchTerm) ||
-                project.contractor.toLowerCase().includes(searchTerm)
-            );
-
-            loadAllProjects();
+            container.innerHTML = projectsHTML;
         }
 
         // عرض تفاصيل المشروع
         function showProjectDetails(projectId) {
-            const project = projectsData.find(p => p.id == projectId);
-            if (project) {
-                alert(`تفاصيل المشروع: ${project.projectName}\nرقم المشروع: ${project.projectNumber}\nنسبة الإنجاز: ${project.currentProgress}%`);
-            }
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+            
+            document.getElementById('modalProjectTitle').textContent = project.projectName;
+            
+            const detailsHTML = `
+                <div class="info-grid">
+                    <!-- معلومات المشروع -->
+                    <div class="info-section">
+                        <div class="info-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            معلومات المشروع
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">اسم المشروع</span>
+                            <span class="info-value">${project.projectName}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">رقم المشروع</span>
+                            <span class="info-value">${project.projectNumber}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">رمز المشروع</span>
+                            <span class="info-value">${project.projectCode}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">رقم الأرض</span>
+                            <span class="info-value">${project.landNumber}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المنطقة</span>
+                            <span class="info-value">${project.regionName}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المقاول</span>
+                            <span class="info-value">${project.contractor}</span>
+                        </div>
+                    </div>
+
+                    <!-- التمويل والتقدم -->
+                    <div class="info-section">
+                        <div class="info-section-title">
+                            <i class="fas fa-dollar-sign"></i>
+                            التمويل والتقدم
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">الممول (جهة التمويل)</span>
+                            <span class="info-value">${project.fundingEntity}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المتبرع (مصدر التمويل)</span>
+                            <span class="info-value">${project.fundingSource}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">رقم العقد</span>
+                            <span class="info-value">${project.contractNumber}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">قيمة العقد</span>
+                            <span class="info-value">${formatCurrency(project.contractValue)} ريال</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">عدد الدفعات المنصرفة</span>
+                            <span class="info-value">${project.projectUpdates} دفعة</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">نسبة الإنجاز</span>
+                            <span class="info-value">${project.currentProgress}%</span>
+                        </div>
+                    </div>
+
+                    <!-- التواريخ المهمة -->
+                    <div class="info-section">
+                        <div class="info-section-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            التواريخ المهمة
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">تاريخ البدء</span>
+                            <span class="info-value">${formatDate(project.startDate)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">تاريخ النهاية الأولى</span>
+                            <span class="info-value">${formatDate(project.endDate)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">تاريخ النهاية المعدل</span>
+                            <span class="info-value">${formatDate(project.adjustedEndDate)}</span>
+                        </div>
+                    </div>
+
+                    <!-- فريق المشروع -->
+                    <div class="info-section">
+                        <div class="info-section-title">
+                            <i class="fas fa-users"></i>
+                            فريق المشروع
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">مدير المشروع</span>
+                            <span class="info-value">${project.projectManager}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">اسم الاستشاري</span>
+                            <span class="info-value">${project.consultantName}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المهندس المعماري</span>
+                            <span class="info-value">${project.architecturalEngineer}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المهندس الميكانيكي</span>
+                            <span class="info-value">${project.mechanicalEngineer}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المهندس الكهربائي</span>
+                            <span class="info-value">${project.electricalEngineer}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">المهندس المدني</span>
+                            <span class="info-value">${project.civilEngineer}</span>
+                        </div>
+                    </div>
+
+                    <!-- الملاحظات -->
+                    ${project.notes ? `
+                    <div class="notes-section">
+                        <div class="notes-title">
+                            <i class="fas fa-sticky-note"></i>
+                            مستجدات وملاحظات المشروع
+                        </div>
+                        <div class="notes-text">${project.notes}</div>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            document.getElementById('modalProjectDetails').innerHTML = detailsHTML;
+            document.getElementById('projectModal').style.display = 'block';
         }
 
-        // تسجيل الخروج
-        function logout() {
-            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-                window.location.href = '#login';
-            }
+        // إغلاق نافذة تفاصيل المشروع
+        function closeProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
         }
 
-        // إضافة تأثيرات التفاعل
-        document.addEventListener('DOMContentLoaded', function() {
-            // تأثير hover للبطاقات
-            const cards = document.querySelectorAll('.stat-card, .project-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
+        // البحث في المشاريع
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredProjects = [...projectsData];
+            } else {
+                filteredProjects = projectsData.filter(project => 
+                    project.projectName.toLowerCase().includes(searchTerm) ||
+                    project.projectNumber.toLowerCase().includes(searchTerm) ||
+                    project.regionName.toLowerCase().includes(searchTerm) ||
+                    project.contractor.toLowerCase().includes(searchTerm) ||
+                    project.fundingSource.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            loadProjectsList();
+            
+            // تمييز النتائج
+            if (searchTerm !== '') {
+                setTimeout(() => {
+                    document.querySelectorAll('.project-item').forEach(item => {
+                        if (item.textContent.toLowerCase().includes(searchTerm)) {
+                            item.classList.add('highlight');
+                        }
+                    });
+                }, 100);
+            }
+        });
+
+        // التنقل بين الصفحات
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
+                // إزالة الفئة النشطة من جميع العناصر
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                
+                // إضافة الفئة النشطة للعنصر المحدد
+                this.classList.add('active');
+                
+                // إخفاء جميع الصفحات
+                document.querySelectorAll('.page-content').forEach(page => page.style.display = 'none');
+                
+                // إظهار الصفحة المحددة
+                const pageId = this.getAttribute('data-page') + 'Page';
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                    
+                    // تحميل البيانات حسب الصفحة
+                    if (pageId === 'projectsPage') {
+                        document.getElementById('allProjectsList').innerHTML = document.getElementById('projectsList').innerHTML;
+                    }
+                }
             });
+        });
+
+        // تبديل الشريط الجانبي للجوال
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // إغلاق النافذة المنبثقة عند النقر خارجها
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // دوال مساعدة
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('ar-SA').format(amount);
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'غير محدد';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-SA');
+        }
+
+        // تحميل البيانات عند بدء التطبيق
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من حالة تسجيل الدخول
+            if (currentUser) {
+                loadDashboard();
+            }
         });
     </script>
 </body>
